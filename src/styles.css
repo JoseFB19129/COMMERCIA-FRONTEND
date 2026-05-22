@@ -1,1 +1,86 @@
 /* You can add global styles to this file, and also import other style files */
+/* Paleta de colores */
+:root {
+  --black-dark: #1a1a1a;
+  --gold: #D4AF37;
+  --gold-dark: #B8960C;
+  --white: #FFFFFF;
+  --gray-light: #f5f5f5;
+  --gray-medium: #cccccc;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--black-dark);
+  color: var(--white);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.btn-gold {
+  background-color: var(--gold);
+  color: var(--black-dark);
+  border: none;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.btn-gold:hover {
+  background-color: var(--gold-dark);
+  color: var(--white);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+}
+
+.card-dark {
+  background-color: #2a2a2a;
+  border: 1px solid var(--gold);
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.text-gold {
+  color: var(--gold);
+}
+
+.border-gold {
+  border-color: var(--gold);
+}
+
+.table-dark-custom {
+  background-color: #2a2a2a;
+  color: var(--white);
+}
+
+.table-dark-custom th {
+  background-color: var(--gold);
+  color: var(--black-dark);
+  border-bottom: none;
+}
+
+.table-dark-custom td {
+  border-color: #444;
+}
+
+.form-control-dark {
+  background-color: #333;
+  border: 1px solid var(--gold);
+  color: var(--white);
+}
+
+.form-control-dark:focus {
+  background-color: #3a3a3a;
+  border-color: var(--gold-dark);
+  color: var(--white);
+  box-shadow: 0 0 0 0.2rem rgba(212, 175, 55, 0.25);
+}
+
+.alert-gold {
+  background-color: var(--gold);
+  color: var(--black-dark);
+  border: none;
+}
