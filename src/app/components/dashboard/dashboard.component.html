@@ -1,0 +1,37 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-12 text-center mb-4">
+      <h1 class="text-gold">Bienvenido al Directorio de Negocios</h1>
+      <p class="text-white-50">Encuentra y gestiona empresas de manera fácil y rápida</p>
+    </div>
+  </div>
+  
+  <div class="row mt-4">
+    <div class="col-md-4 mb-3">
+      <div class="card-dark p-3 text-center">
+        <i class="bi bi-building fs-1 text-gold"></i>
+        <h3 class="mt-3">Empresas Registradas</h3>
+        <p>Consulta todas las empresas disponibles en el directorio</p>
+        <button class="btn btn-gold" routerLink="/companies">Ver empresas</button>
+      </div>
+    </div>
+    
+    <div class="col-md-4 mb-3" *ngIf="userRole === 'empresa'">
+      <div class="card-dark p-3 text-center">
+        <i class="bi bi-person-badge fs-1 text-gold"></i>
+        <h3 class="mt-3">Mi Perfil</h3>
+        <p>Gestiona los datos de tu empresa</p>
+        <button class="btn btn-gold" routerLink="/profile">Ver perfil</button>
+      </div>
+    </div>
+    
+    <div class="col-md-4 mb-3" *ngIf="userRole === 'visitante'">
+      <div class="card-dark p-3 text-center">
+        <i class="bi bi-person fs-1 text-gold"></i>
+        <h3 class="mt-3">Mi Perfil</h3>
+        <p>Actualiza tus datos personales</p>
+        <button class="btn btn-gold" routerLink="/profile">Ver perfil</button>
+      </div>
+    </div>
+  </div>
+</div>

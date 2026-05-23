@@ -1,0 +1,71 @@
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card-dark p-4">
+        <div class="text-center mb-4">
+          <h2 class="text-gold">Registro de Usuario</h2>
+          <p class="text-white-50">Elige el tipo de cuenta</p>
+        </div>
+        
+        <div class="btn-group w-100 mb-4" role="group">
+          <button type="button" class="btn" [ngClass]="{'btn-gold': userType === 'empresa', 'btn-outline-secondary': userType !== 'empresa'}" 
+                  (click)="userType = 'empresa'">Empresa</button>
+          <button type="button" class="btn" [ngClass]="{'btn-gold': userType === 'visitante', 'btn-outline-secondary': userType !== 'visitante'}" 
+                  (click)="userType = 'visitante'">Visitante</button>
+        </div>
+        
+        <div *ngIf="errorMessage" class="alert alert-danger alert-dismissible fade show" role="alert">
+          {{ errorMessage }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+        
+        <div *ngIf="successMessage" class="alert alert-success">
+          {{ successMessage }}
+        </div>
+        
+        <form (ngSubmit)="onSubmit()">
+          <!-- Campos comunes -->
+          <div class="mb-3">
+            <label for="nombre" class="form-label text-gold">Nombre</label>
+            <input type="text" class="form-control form-control-dark" id="nombre" 
+                   [(ngModel)]="registerData.nombre" name="nombre" required>
+          </div>
+          
+          <!-- Solo para visitante -->
+          <div class="mb-3" *ngIf="userType === 'visitante'">
+            <label for="apellido" class="form-label text-gold">Apellido</label>
+            <input type="text" class="form-control form-control-dark" id="apellido" 
+                   [(ngModel)]="registerData.apellido" name="apellido" required>
+          </div>
+          
+          <!-- Solo para empresa -->
+          <div class="mb-3" *ngIf="userType === 'empresa'">
+            <label for="nit" class="form-label text-gold">NIT</label>
+            <input type="text" class="form-control form-control-dark" id="nit" 
+                   [(ngModel)]="registerData.nit" name="nit" required>
+          </div>
+          
+          <div class="mb-3">
+            <label for="correo" class="form-label text-gold">Correo Electrónico</label>
+            <input type="email" class="form-control form-control-dark" id="correo" 
+                   [(ngModel)]="registerData.correo" name="correo" required>
+          </div>
+          
+          <div class="mb-3">
+            <label for="contrasena" class="form-label text-gold">Contraseña (mínimo 8 caracteres)</label>
+            <input type="password" class="form-control form-control-dark" id="contrasena" 
+                   [(ngModel)]="registerData.contrasena" name="contrasena" required minlength="8">
+          </div>
+          
+          <button type="submit" class="btn btn-gold w-100" [disabled]="isLoading">
+            {{ isLoading ? 'Registrando...' : 'Registrarse' }}
+          </button>
+        </form>
+        
+        <div class="text-center mt-3">
+          <a routerLink="/login" class="text-gold text-decoration-none">¿Ya tienes cuenta? Inicia sesión aquí</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

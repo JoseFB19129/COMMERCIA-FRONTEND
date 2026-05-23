@@ -1,0 +1,39 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-5">
+      <div class="card-dark p-4">
+        <div class="text-center mb-4">
+          <h2 class="text-gold">Iniciar Sesión</h2>
+          <p class="text-white-50">Directorio de Negocios</p>
+        </div>
+        
+        <div *ngIf="errorMessage" class="alert alert-danger alert-dismissible fade show" role="alert">
+          {{ errorMessage }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+        
+        <form (ngSubmit)="onSubmit()">
+          <div class="mb-3">
+            <label for="correo" class="form-label text-gold">Correo Electrónico</label>
+            <input type="email" class="form-control form-control-dark" id="correo" 
+                   [(ngModel)]="loginData.correo" name="correo" required>
+          </div>
+          
+          <div class="mb-3">
+            <label for="contrasena" class="form-label text-gold">Contraseña</label>
+            <input type="password" class="form-control form-control-dark" id="contrasena" 
+                   [(ngModel)]="loginData.contrasena" name="contrasena" required>
+          </div>
+          
+          <button type="submit" class="btn btn-gold w-100" [disabled]="isLoading">
+            {{ isLoading ? 'Cargando...' : 'Ingresar' }}
+          </button>
+        </form>
+        
+        <div class="text-center mt-3">
+          <a routerLink="/register" class="text-gold text-decoration-none">¿No tienes cuenta? Regístrate aquí</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,103 @@
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card-dark p-4">
+        <div class="text-center mb-4">
+          <h2 class="text-gold">Mi Perfil</h2>
+          <p class="text-white-50">Gestiona tu información personal</p>
+        </div>
+        
+        <div *ngIf="successMessage" class="alert alert-success alert-dismissible fade show">
+          {{ successMessage }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+        
+        <div *ngIf="errorMessage" class="alert alert-danger alert-dismissible fade show">
+          {{ errorMessage }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+        
+        <div *ngIf="isLoading" class="text-center">
+          <div class="spinner-border text-gold" role="status">
+            <span class="visually-hidden">Cargando...</span>
+          </div>
+        </div>
+        
+        <div *ngIf="!isLoading && userData">
+          <!-- Datos del perfil -->
+          <form (ngSubmit)="updateProfile()">
+            <div class="mb-3">
+              <label class="form-label text-gold">Nombre</label>
+              <input type="text" class="form-control form-control-dark" [(ngModel)]="userData.nombre" name="nombre">
+            </div>
+            
+            <div class="mb-3" *ngIf="userRole === 'visitante'">
+              <label class="form-label text-gold">Apellido</label>
+              <input type="text" class="form-control form-control-dark" [(ngModel)]="userData.apellido" name="apellido">
+            </div>
+            
+            <div class="mb-3" *ngIf="userRole === 'empresa'">
+              <label class="form-label text-gold">NIT</label>
+              <input type="text" class="form-control form-control-dark" [(ngModel)]="userData.nit" name="nit">
+            </div>
+            
+            <div class="mb-3">
+              <label class="form-label text-gold">Correo Electrónico</label>
+              <input type="email" class="form-control form-control-dark" [(ngModel)]="userData.correo" name="correo">
+            </div>
+            
+            <button type="submit" class="btn btn-gold w-100">Actualizar Perfil</button>
+          </form>
+          
+          <hr class="border-gold my-4">
+          
+          <!-- Cambiar contraseña -->
+          <h4 class="text-gold mb-3">Cambiar Contraseña</h4>
+          <form (ngSubmit)="changePassword()">
+            <div class="mb-3">
+              <label class="form-label">Contraseña Actual</label>
+              <input type="password" class="form-control form-control-dark" [(ngModel)]="passwordData.contrasenaActual" name="currentPassword">
+            </div>
+            
+            <div class="mb-3">
+              <label class="form-label">Nueva Contraseña</label>
+              <input type="password" class="form-control form-control-dark" [(ngModel)]="passwordData.nuevaContrasena" name="newPassword">
+            </div>
+            
+            <button type="submit" class="btn btn-outline-gold w-100">Cambiar Contraseña</button>
+          </form>
+          
+          <hr class="border-gold my-4">
+          
+          <!-- Eliminar cuenta -->
+          <div class="text-center">
+            <button class="btn btn-danger" (click)="deleteAccount()" 
+                    *ngIf="!isDeleting" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal">
+              Eliminar Cuenta
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal de confirmación -->
+<div class="modal fade" id="confirmDeleteModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content bg-dark text-white">
+      <div class="modal-header border-gold">
+        <h5 class="modal-title text-gold">Confirmar Eliminación</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <p>¿Estás seguro de que deseas eliminar tu cuenta?</p>
+        <p class="text-danger">Esta acción no se puede deshacer.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-danger" (click)="confirmDelete()" data-bs-dismiss="modal">Sí, eliminar</button>
+      </div>
+    </div>
+  </div>
+</div>

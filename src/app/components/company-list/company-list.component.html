@@ -1,0 +1,29 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-12 text-center mb-4">
+      <h1 class="text-gold">Directorio de Empresas</h1>
+      <p class="text-white-50">Explora las empresas registradas en nuestra plataforma</p>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-md-4 mb-3" *ngFor="let company of companies">
+      <div class="card-dark p-3 h-100">
+        <h3 class="text-gold">{{ company.nombre }}</h3>
+        <p class="text-white-50">NIT: {{ company.nit }}</p>
+        <p class="text-white-50">Email: {{ company.correo }}</p>
+        <button class="btn btn-gold btn-sm" [routerLink]="['/companies', company._id]">Ver detalles</button>
+      </div>
+    </div>
+  </div>
+  
+  <div *ngIf="companies.length === 0 && !isLoading" class="text-center text-white-50">
+    <p>No hay empresas registradas aún</p>
+  </div>
+  
+  <div *ngIf="isLoading" class="text-center">
+    <div class="spinner-border text-gold" role="status">
+      <span class="visually-hidden">Cargando...</span>
+    </div>
+  </div>
+</div>
