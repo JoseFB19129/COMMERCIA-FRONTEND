@@ -1,0 +1,48 @@
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card-dark p-4" *ngIf="company && !isLoading">
+        <div class="text-center mb-4">
+          <h1 class="text-gold">{{ company.nombre }}</h1>
+          <div class="badge bg-gold text-dark">{{ company.role || 'Empresa' }}</div>
+        </div>
+        
+        <div class="mb-3">
+          <label class="form-label text-gold fw-bold">NIT:</label>
+          <p class="text-white">{{ company.nit }}</p>
+        </div>
+        
+        <div class="mb-3">
+          <label class="form-label text-gold fw-bold">Correo Electrónico:</label>
+          <p class="text-white">{{ company.correo }}</p>
+        </div>
+        
+        <div class="mb-3" *ngIf="company.directorio && company.directorio.length > 0">
+          <label class="form-label text-gold fw-bold">Directorio:</label>
+          <div class="list-group">
+            <div *ngFor="let item of company.directorio" class="list-group-item bg-dark text-white">
+              {{ item.nombre || 'Empresa en directorio' }}
+            </div>
+          </div>
+        </div>
+        
+        <div class="text-center mt-4">
+          <button class="btn btn-gold" routerLink="/companies">Volver al Directorio</button>
+        </div>
+      </div>
+      
+      <div *ngIf="isLoading" class="text-center">
+        <div class="spinner-border text-gold" role="status">
+          <span class="visually-hidden">Cargando...</span>
+        </div>
+      </div>
+      
+      <div *ngIf="errorMessage" class="alert alert-danger">
+        {{ errorMessage }}
+        <div class="text-center mt-3">
+          <button class="btn btn-gold" routerLink="/companies">Volver</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

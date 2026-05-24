@@ -1,0 +1,61 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card bg-dark text-white border-warning mb-4">
+        <div class="card-header bg-warning text-dark">
+          <h4>Actualizar Datos</h4>
+        </div>
+        <div class="card-body">
+          <div class="mb-3">
+            <label>Nombre</label>
+            <input type="text" class="form-control" [(ngModel)]="userData.nombre">
+          </div>
+          <div *ngIf="userData.apellido !== undefined" class="mb-3">
+            <label>Apellido</label>
+            <input type="text" class="form-control" [(ngModel)]="userData.apellido">
+          </div>
+          <div *ngIf="userData.nit !== undefined" class="mb-3">
+            <label>NIT</label>
+            <input type="text" class="form-control" [(ngModel)]="userData.nit">
+          </div>
+          <div class="mb-3">
+            <label>Correo</label>
+            <input type="email" class="form-control" [(ngModel)]="userData.correo">
+          </div>
+          <button class="btn btn-warning" (click)="updateProfile()">Actualizar perfil</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="card bg-dark text-white border-warning mb-4">
+        <div class="card-header bg-warning text-dark">
+          <h4>Cambiar Contraseña</h4>
+        </div>
+        <div class="card-body">
+          <div class="mb-3">
+            <label>Contraseña actual</label>
+            <input type="password" class="form-control" [(ngModel)]="passwordData.contrasenaActual">
+          </div>
+          <div class="mb-3">
+            <label>Nueva contraseña</label>
+            <input type="password" class="form-control" [(ngModel)]="passwordData.nuevaContrasena">
+          </div>
+          <button class="btn btn-outline-warning" (click)="changePassword()">Cambiar contraseña</button>
+        </div>
+      </div>
+
+      <div class="card bg-dark text-white border-danger">
+        <div class="card-header bg-danger text-white">
+          <h4>Zona de Peligro</h4>
+        </div>
+        <div class="card-body">
+          <p>Eliminar tu cuenta es irreversible.</p>
+          <button class="btn btn-danger" (click)="deleteAccount()">Eliminar cuenta</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="message" class="alert alert-success mt-3">{{ message }}</div>
+  <div *ngIf="error" class="alert alert-danger mt-3">{{ error }}</div>
+</div>
